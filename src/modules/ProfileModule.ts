@@ -11,4 +11,5 @@ export class ProfileModule implements IModule {
     constructor(sdk: SDK) {
       this._sdk = sdk;
     } 
+    
 }

@@ -1,11 +1,13 @@
 import { MoveCallTransaction } from '@mysten/sui.js';
-import { IModule } from '../interfaces/IModule';
+import { IModule, DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE } from '../interfaces/IModule';
 import { SDK } from '../sdk';
 
 export type PostTweetParams = {
   app_id: number,
   action: number
   text: string,
+  gasPayment:string,
+  gasBudget: number
 }
 
 export type PostTweetRefParams = {
@@ -13,6 +15,8 @@ export type PostTweetRefParams = {
   action: number,
   text: string,
   ref_identifier: string,
+  gasPayment:string,
+  gasBudget: number
 }
 
 export class TweetModule implements IModule {
@@ -26,7 +30,8 @@ export class TweetModule implements IModule {
       this._sdk = sdk;
     } 
 
-    buildPostTweetTransaction(params: PostTweetParams, gasPayment: string): MoveCallTransaction {
+    buildPostTweetTransaction(params: PostTweetParams): MoveCallTransaction {
+
       const packageObjectId = this.sdk.networkOptions.packageObjectId;
       const txn:MoveCallTransaction = {
         packageObjectId: packageObjectId,
@@ -34,13 +39,13 @@ export class TweetModule implements IModule {
         function: 'post',
         arguments: [params.app_id,params.action,params.text],
         typeArguments: [],
-        gasPayment: gasPayment,
-        gasBudget: 10000,
+        gasPayment: params.gasPayment,
+        gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,
       }
       return txn;
     }
 
-    buildPostTweetWithRefTransaction(params: PostTweetRefParams, gasPayment: string): MoveCallTransaction {
+    buildPostTweetWithRefTransaction(params: PostTweetRefParams): MoveCallTransaction {
       const packageObjectId = this.sdk.networkOptions.packageObjectId;
       const txn:MoveCallTransaction = {
         packageObjectId: packageObjectId,
@@ -48,8 +53,8 @@ export class TweetModule implements IModule {
         function: 'post',
         arguments: [params.app_id,params.action,params.text,params.ref_identifier],
         typeArguments: [],
-        gasPayment: gasPayment,
-        gasBudget: 10000,
+        gasPayment: params.gasPayment,
+        gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,
       }
       return txn;
     }
