@@ -1,6 +1,6 @@
 {
-  "name": "@omnibtc/omniswap-sui-sdk",
-  "version": "0.0.14",
+  "name": "@omnibtc/dmens-sui-sdk",
+  "version": "0.0.1",
   "description": "",
   "sideEffects": false,
   "exports": {
