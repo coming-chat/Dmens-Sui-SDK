@@ -55,13 +55,13 @@ const postTweetWithRref = async (
        console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
     }
     
-    program
-        .command('dmens:post-tweet-with-ref')
-        .description('Publish Tweet')
-        .argument('<app_id>')
-        .argument('<action>')
-        .argument('<text>')
-        .argument('<ref>')
-        .action(postTweetWithRref)
+program
+    .command('dmens:post-tweet-with-ref')
+    .description('Publish Tweet')
+    .argument('<app_id>')
+    .argument('<action>')
+    .argument('<text>')
+    .argument('<ref>')
+    .action(postTweetWithRref)
 
 program.parse();
