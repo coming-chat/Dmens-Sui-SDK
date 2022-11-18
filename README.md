@@ -8,3 +8,22 @@ The typescript SDK for Dmens Protocol.
 | Devnet  | 0x5f8aeee082afcf39e9717135846d666b2e82c855 | 0x9b1406e525ad56e60f954e0144c9aade622923dc |
 | Testnet | 0x7a3ff93380660c4fa3ea8df8de13acb2cadf7052 | 0x69b38e9e2c17551d347ffbe49e5e8b0e24db78ad |
 | Mainnet |                                            |                                            |
+
+## Usage
+
+### Install
+```
+yarn add @omnibtc/dmens-sui-sdk
+```
+
+### CLI
+
+```
+yarn cli 
+```
+
+### Post Tweet 
+
+```
+yarn cli -c ~/.sui/sui_config dmens:post-tweet 1 0  "hello,Dmens!"
+```
