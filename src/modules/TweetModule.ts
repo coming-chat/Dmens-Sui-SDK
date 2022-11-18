@@ -3,20 +3,20 @@ import { IModule, DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE } from '../interfaces/IMod
 import { SDK } from '../sdk';
 
 export type PostTweetParams = {
-  app_id: number,
+  appId: number,
   action: number
   text: string,
-  gasPayment:string,
-  gasBudget: number
+  gasPayment?:string,
+  gasBudget?: number
 }
 
 export type PostTweetRefParams = {
-  app_id: number,
+  appId: number,
   action: number,
   text: string,
-  ref_identifier: string,
-  gasPayment:string,
-  gasBudget: number
+  refIdentifier: string,
+  gasPayment?:string,
+  gasBudget?: number
 }
 
 export class TweetModule implements IModule {
@@ -37,7 +37,7 @@ export class TweetModule implements IModule {
         packageObjectId: packageObjectId,
         module: 'dmens',
         function: 'post',
-        arguments: [params.app_id,params.action,params.text],
+        arguments: [params.appId,params.action,params.text],
         typeArguments: [],
         gasPayment: params.gasPayment,
         gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,
@@ -51,7 +51,7 @@ export class TweetModule implements IModule {
         packageObjectId: packageObjectId,
         module: 'dmens',
         function: 'post',
-        arguments: [params.app_id,params.action,params.text,params.ref_identifier],
+        arguments: [params.appId,params.action,params.text,params.refIdentifier],
         typeArguments: [],
         gasPayment: params.gasPayment,
         gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,
