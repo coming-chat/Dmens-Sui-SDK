@@ -46,3 +46,8 @@ Commands:
 ```
 yarn cli -c ~/.sui/sui_config dmens:post-tweet 1 0  "hello,Dmens!"
 ```
+
+### Update Profile (Only Admin)
+```
+yarn cli -c ~/.sui/sui_config dmens:update-profile "0xc05eaaf1369ece51ce0b8ad5cb797b737d4f2eba" "{\"userName\":\"test\",\"userWalletAddress\":\"0xc05eaaf1369ece51ce0b8ad5cb797b737d4f2eba\",\"userProfileUrl\":\"http://aaa.com\",\"userBio\":\"bio\",\"userCid\":\"888\"}"
+```

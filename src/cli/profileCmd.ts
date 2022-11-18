@@ -12,13 +12,7 @@ export const updateprofileCmd = async (
         const { dmensSdk, rawSigner } = readConfig(program);
 
         const profileJSon =  JSON.parse(profile);
-        // const profileParams = {
-        //     userName: 'qinghuan',
-        //     userWalletAddress: '0xc05eaaf1369ece51ce0b8ad5cb797b737d4f2eba',
-        //     userProfileUrl: 'http://aaa.com',
-        //     userBio: 'bio',
-        //     userCid: '888'
-        // }
+
         console.log(`-------------post tweet-------------`)
         const postTweetTxn = dmensSdk.Profile.buildUpdateProfileTransaction(userAddress, profileJSon);
         const address = await rawSigner.getAddress();
