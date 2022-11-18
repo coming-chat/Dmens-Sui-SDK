@@ -33,4 +33,35 @@ program
     .argument('<text>')
     .action(postTweet)
 
+const postTweetWithRref = async (
+        appId: number,
+        action: number,
+        text: string,
+        ref: string,
+    ) => {
+       const { dmensSdk, rawSigner } = readConfig(program);
+       const params = {
+        appId:  appId ? appId : AppId.APP_ID_FOR_COMINGCHAT_WEB,
+        action: action ? action : TweetAction.ACTION_POST,
+        text: text,
+        refIdentifier: ref
+       }
+       console.log(`-------------post tweet with ref-------------`)
+       const postTweetWithTxn = dmensSdk.Tweet.buildPostTweetWithRefTransaction(params);
+       const address = await rawSigner.getAddress();
+       console.log(`address: 0x${address}`)
+       const executeResponse = await rawSigner.executeMoveCallWithRequestType(postTweetWithTxn,'WaitForEffectsCert')
+       const response = getTransactionEffects(executeResponse)
+       console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
+    }
+    
+    program
+        .command('dmens:post-tweet-with-ref')
+        .description('Publish Tweet')
+        .argument('<app_id>')
+        .argument('<action>')
+        .argument('<text>')
+        .argument('<ref>')
+        .action(postTweetWithRref)
+
 program.parse();

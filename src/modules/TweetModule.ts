@@ -52,7 +52,7 @@ export class TweetModule implements IModule {
       const txn:MoveCallTransaction = {
         packageObjectId: packageObjectId,
         module: 'dmens',
-        function: 'post',
+        function: 'post_with_ref',
         arguments: [params.appId,params.action,params.text,params.refIdentifier],
         typeArguments: [],
         gasPayment: params.gasPayment,
