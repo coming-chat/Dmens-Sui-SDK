@@ -1,5 +1,4 @@
-import {  MoveCallTransaction,HexDataBuffer } from '@mysten/sui.js';
-
+import {  MoveCallTransaction } from '@mysten/sui.js';
 import { IModule, DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE } from '../interfaces/IModule';
 import { SDK } from '../sdk';
 
