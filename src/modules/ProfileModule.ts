@@ -21,23 +21,32 @@ export class ProfileModule implements IModule {
       this._sdk = sdk;
     } 
 
-    buildUpdateProfileTransaction(profile:UserProfile): MoveCallTransaction {
+    buildUpdateAdminTransaction(address:string): MoveCallTransaction {
       const packageObjectId = this.sdk.networkOptions.packageObjectId;
-      const bcsType =  {
-        userName: 'vector<u8>',
-        userWalletAddress: 'vector<u8>',
-        userProfileUrl: 'vector<u8>',
-        userBio: 'vector<u8>',
-        userCid: 'vector<u8>'
-      };
-      bcs.registerStructType('UserProfile',bcsType);
-      const profileBcsSer = bcs.ser('UserProfile',profile).toString('base64');
+      
+      const globalId = this.sdk.networkOptions.globalId;
 
       const txn:MoveCallTransaction = {
         packageObjectId: packageObjectId,
-        module: 'dmens',
-        function: 'post_with_ref',
-        arguments: [profileBcsSer],
+        module: 'profile',
+        function: 'add_admin',
+        arguments: [globalId,address],
+        typeArguments: [],
+        gasBudget: 30000,
+      }
+      return txn;
+    }
+
+    buildUpdateProfileTransaction(address:string,profile:UserProfile): MoveCallTransaction {
+      const packageObjectId = this.sdk.networkOptions.packageObjectId;
+      
+      const globalId = this.sdk.networkOptions.globalId;
+
+      const txn:MoveCallTransaction = {
+        packageObjectId: packageObjectId,
+        module: 'profile',
+        function: 'update_profile',
+        arguments: [globalId,address,JSON.stringify(profile)],
         typeArguments: [],
         gasBudget: 30000,
       }
