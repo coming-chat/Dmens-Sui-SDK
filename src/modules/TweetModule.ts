@@ -1,4 +1,5 @@
-import { MoveCallTransaction } from '@mysten/sui.js';
+import {  MoveCallTransaction,HexDataBuffer } from '@mysten/sui.js';
+
 import { IModule, DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE } from '../interfaces/IModule';
 import { SDK } from '../sdk';
 
@@ -33,11 +34,12 @@ export class TweetModule implements IModule {
     buildPostTweetTransaction(params: PostTweetParams): MoveCallTransaction {
 
       const packageObjectId = this.sdk.networkOptions.packageObjectId;
-      const txn:MoveCallTransaction = {
+  
+      const txn: MoveCallTransaction = {
         packageObjectId: packageObjectId,
         module: 'dmens',
         function: 'post',
-        arguments: [params.appId,params.action,params.text],
+        arguments: [params.appId, params.action, params.text],
         typeArguments: [],
         gasPayment: params.gasPayment,
         gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,
