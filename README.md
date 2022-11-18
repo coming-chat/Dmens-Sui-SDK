@@ -1,5 +1,5 @@
-## DMens-Sui-SDK
-The typescript SDK for DMens Protocol.
+## Dmens-Sui-SDK
+The typescript SDK for Dmens Protocol.
 >Dmens is a reduction of "Decentralize Momments", building a blockchain Twitter protocol on the Sui network, and integrating it in ComingChat in the form of a product similar to WeChat Moments.
 
 ### DMens Contract On Sui-Nami Network
