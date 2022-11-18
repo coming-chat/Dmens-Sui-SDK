@@ -1,4 +1,4 @@
-import {  MoveCallTransaction, bcs } from '@mysten/sui.js';
+import { MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule';
 import { SDK } from '../sdk';
 
