@@ -17,7 +17,28 @@ yarn add @omnibtc/dmens-sui-sdk
 ```
 
 ### CLI
+```
+  ____    __  __                                 ____   _       ___ 
+ |  _ \  |  \/  |   ___   _ __    ___           / ___| | |     |_ _|
+ | | | | | |\/| |  / _ \ | '_ \  / __|  _____  | |     | |      | | 
+ | |_| | | |  | | |  __/ | | | | \__ \ |_____| | |___  | |___   | | 
+ |____/  |_|  |_|  \___| |_| |_| |___/          \____| |_____| |___|
+                                                                    
+Usage: index [options] [command]
 
+DMens Sui TS CLI
+
+Options:
+  -c, --config <path>                                       path to your sui config.yml (generated with "sui client active-address")
+  -h, --help                                                display help for command
+
+Commands:
+  dmens:post-tweet <app_id> <action> <text>                 Publish Tweet
+  dmens:post-tweet-with-ref <app_id> <action> <text> <ref>  Publish Tweet
+  dmens:update-profile <address> <profile>                  Update User profile
+  dmens:update-profile-admin <address>                      Update User profile
+  help [command]                                            display help for command
+```
 ```
 yarn cli 
 ```
