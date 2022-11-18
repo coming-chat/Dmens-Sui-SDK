@@ -18,6 +18,7 @@ yarn add @omnibtc/dmens-sui-sdk
 
 ### CLI
 ```
+yarn cli
   ____    __  __                                 ____   _       ___ 
  |  _ \  |  \/  |   ___   _ __    ___           / ___| | |     |_ _|
  | | | | | |\/| |  / _ \ | '_ \  / __|  _____  | |     | |      | | 
@@ -38,9 +39,6 @@ Commands:
   dmens:update-profile <address> <profile>                  Update User profile
   dmens:update-profile-admin <address>                      Update User profile
   help [command]                                            display help for command
-```
-```
-yarn cli 
 ```
 
 ### Post Tweet 
