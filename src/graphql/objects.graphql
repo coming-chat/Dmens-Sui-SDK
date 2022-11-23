@@ -1,0 +1,21 @@
+query AllObjectLists {
+  allObjectLists {
+    nodes {
+      version
+      updateTime
+      type
+      storageRebate
+      status
+      previousTransaction
+      owner
+      objectId
+      nodeId
+      isUpdate
+      hasPublicTransfer
+      fields
+      digest
+      dataType
+      createTime
+    }
+  }
+}
