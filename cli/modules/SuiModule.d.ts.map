@@ -1,0 +1,1 @@
+{"version":3,"file":"SuiModule.d.ts","sourceRoot":"","sources":["../../src/modules/SuiModule.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,OAAO,EAAuC,MAAM,uBAAuB,CAAC;AACrF,OAAO,EAAE,GAAG,EAAE,MAAM,QAAQ,CAAC;AAE7B,qBAAa,SAAU,YAAW,OAAO;IACrC,SAAS,CAAC,IAAI,EAAE,GAAG,CAAC;IAEpB,IAAI,GAAG,QAEN;gBAEW,GAAG,EAAE,GAAG;IAIpB,oBAAoB,CAAC,aAAa,EAAE,MAAM,GAAG,MAAM;CAOtD"}
