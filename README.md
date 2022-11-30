@@ -5,7 +5,7 @@ The typescript SDK for Dmens Protocol.
 ### DMens Contract On Sui-Nami Network
 |         | PackageId                                  | globalId                                   |
 | ------- | ------------------------------------------ | ------------------------------------------ |
-| Devnet  | 0xb073b051879bcff6321ad7bb277f7128c2f293eb | 0x582d1e989991cd4255ac3d2ba5ac7db15d3077ba |
+| Devnet  | 0x1c0a7b8073f8b2e654ff3d217fb276d0e95dda44 | 0x0d8a4050d7b27d08adb20be4ff6af1130b8ca95a |
 | Testnet | 0x7a3ff93380660c4fa3ea8df8de13acb2cadf7052 | 0x69b38e9e2c17551d347ffbe49e5e8b0e24db78ad |
 | Mainnet |                                            |                                            |
 
