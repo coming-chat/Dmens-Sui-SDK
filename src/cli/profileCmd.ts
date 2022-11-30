@@ -6,7 +6,6 @@ export const updateprofileCmd = async (
     program: Command
 ) => {
     const updateProfile = async(
-        userAddress: string,
         profile: string,
     ) => {
         const { dmensSdk, rawSigner } = readConfig(program);
@@ -14,10 +13,10 @@ export const updateprofileCmd = async (
         const profileJSon =  JSON.parse(profile);
 
         console.log(`-------------post tweet-------------`)
-        const postTweetTxn = dmensSdk.Profile.buildUpdateProfileTransaction(userAddress, profileJSon);
+        const postProfileTxn = dmensSdk.Profile.buildUpdateProfileTransaction(profileJSon);
         const address = await rawSigner.getAddress();
         console.log(`address: 0x${address}`)
-        const executeResponse = await rawSigner.executeMoveCallWithRequestType(postTweetTxn,'WaitForEffectsCert')
+        const executeResponse = await rawSigner.executeMoveCallWithRequestType(postProfileTxn,'WaitForEffectsCert')
         const response = getTransactionEffects(executeResponse)
         console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
     };
@@ -25,30 +24,6 @@ export const updateprofileCmd = async (
     program
     .command('dmens:update-profile')
     .description('Update User profile')
-    .argument('<address>')
     .argument('<profile>')
-    .action(updateProfile)
-}
-
-export const adminProfileCmd = async (
-    program: Command
-) => {
-    const updateProfile = async(
-        userAddress: string,
-    ) => {
-        const { dmensSdk, rawSigner } = readConfig(program);
-        console.log(`-------------post tweet-------------`)
-        const postTweetTxn = dmensSdk.Profile.buildUpdateAdminTransaction(userAddress);
-        const address = await rawSigner.getAddress();
-        console.log(`address: 0x${address}`)
-        const executeResponse = await rawSigner.executeMoveCallWithRequestType(postTweetTxn,'WaitForEffectsCert')
-        const response = getTransactionEffects(executeResponse)
-        console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
-    };
-
-    program
-    .command('dmens:update-profile-admin')
-    .description('Update User profile')
-    .argument('<address>')
     .action(updateProfile)
 }

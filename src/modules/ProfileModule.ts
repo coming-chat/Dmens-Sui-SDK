@@ -21,32 +21,15 @@ export class ProfileModule implements IModule {
       this._sdk = sdk;
     } 
 
-    buildUpdateAdminTransaction(address:string): MoveCallTransaction {
+    buildUpdateProfileTransaction(profile:UserProfile): MoveCallTransaction {
       const packageObjectId = this.sdk.networkOptions.packageObjectId;
-      
-      const globalId = this.sdk.networkOptions.globalId;
-
-      const txn:MoveCallTransaction = {
-        packageObjectId: packageObjectId,
-        module: 'profile',
-        function: 'add_admin',
-        arguments: [globalId,address],
-        typeArguments: [],
-        gasBudget: 30000,
-      }
-      return txn;
-    }
-
-    buildUpdateProfileTransaction(address:string,profile:UserProfile): MoveCallTransaction {
-      const packageObjectId = this.sdk.networkOptions.packageObjectId;
-      
       const globalId = this.sdk.networkOptions.globalId;
 
       const txn:MoveCallTransaction = {
         packageObjectId: packageObjectId,
         module: 'profile',
         function: 'update_profile',
-        arguments: [globalId,address,JSON.stringify(profile)],
+        arguments: [globalId, JSON.stringify(profile), "1111",""],
         typeArguments: [],
         gasBudget: 30000,
       }

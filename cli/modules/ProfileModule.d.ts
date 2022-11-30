@@ -12,7 +12,6 @@ export declare class ProfileModule implements IModule {
     protected _sdk: SDK;
     get sdk(): SDK;
     constructor(sdk: SDK);
-    buildUpdateAdminTransaction(address: string): MoveCallTransaction;
-    buildUpdateProfileTransaction(address: string, profile: UserProfile): MoveCallTransaction;
+    buildUpdateProfileTransaction(profile: UserProfile): MoveCallTransaction;
 }
 //# sourceMappingURL=ProfileModule.d.ts.map

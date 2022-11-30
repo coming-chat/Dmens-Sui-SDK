@@ -76,27 +76,14 @@ class ProfileModule {
     get sdk() {
         return this._sdk;
     }
-    buildUpdateAdminTransaction(address) {
-        const packageObjectId = this.sdk.networkOptions.packageObjectId;
-        const globalId = this.sdk.networkOptions.globalId;
-        const txn = {
-            packageObjectId: packageObjectId,
-            module: 'profile',
-            function: 'add_admin',
-            arguments: [globalId, address],
-            typeArguments: [],
-            gasBudget: 30000,
-        };
-        return txn;
-    }
-    buildUpdateProfileTransaction(address, profile) {
+    buildUpdateProfileTransaction(profile) {
         const packageObjectId = this.sdk.networkOptions.packageObjectId;
         const globalId = this.sdk.networkOptions.globalId;
         const txn = {
             packageObjectId: packageObjectId,
             module: 'profile',
             function: 'update_profile',
-            arguments: [globalId, address, JSON.stringify(profile)],
+            arguments: [globalId, JSON.stringify(profile), "1111", ""],
             typeArguments: [],
             gasBudget: 30000,
         };
@@ -198,7 +185,7 @@ class NetworkConfiguration {
 }
 const MAINNET_CONFIG = new NetworkConfiguration('mainnet', 'https://fullnode.mainnet.sui.io:443', '', '');
 const TESTNET_CONFIG = new NetworkConfiguration('testnet', 'https://fullnode.testnet.sui.io:443', '0x7a3ff93380660c4fa3ea8df8de13acb2cadf7052', '0x69b38e9e2c17551d347ffbe49e5e8b0e24db78ad');
-const DEVNET_CONFIG = new NetworkConfiguration('devnet', sui_js.Network.DEVNET, '0xb073b051879bcff6321ad7bb277f7128c2f293eb', '0x582d1e989991cd4255ac3d2ba5ac7db15d3077ba');
+const DEVNET_CONFIG = new NetworkConfiguration('devnet', sui_js.Network.DEVNET, '0x1c0a7b8073f8b2e654ff3d217fb276d0e95dda44', '0x0d8a4050d7b27d08adb20be4ff6af1130b8ca95a');
 const CONFIGS = {
     mainnet: MAINNET_CONFIG,
     testnet: TESTNET_CONFIG,
@@ -287,39 +274,21 @@ const postTweetWithRrefCmd = (program) => __awaiter(void 0, void 0, void 0, func
 });
 
 const updateprofileCmd = (program) => __awaiter(void 0, void 0, void 0, function* () {
-    const updateProfile = (userAddress, profile) => __awaiter(void 0, void 0, void 0, function* () {
+    const updateProfile = (profile) => __awaiter(void 0, void 0, void 0, function* () {
         const { dmensSdk, rawSigner } = readConfig(program);
         const profileJSon = JSON.parse(profile);
         console.log(`-------------post tweet-------------`);
-        const postTweetTxn = dmensSdk.Profile.buildUpdateProfileTransaction(userAddress, profileJSon);
+        const postProfileTxn = dmensSdk.Profile.buildUpdateProfileTransaction(profileJSon);
         const address = yield rawSigner.getAddress();
         console.log(`address: 0x${address}`);
-        const executeResponse = yield rawSigner.executeMoveCallWithRequestType(postTweetTxn, 'WaitForEffectsCert');
+        const executeResponse = yield rawSigner.executeMoveCallWithRequestType(postProfileTxn, 'WaitForEffectsCert');
         const response = sui_js.getTransactionEffects(executeResponse);
         console.log(`excute status: ${response === null || response === void 0 ? void 0 : response.status.status} digest: ${response === null || response === void 0 ? void 0 : response.transactionDigest} `);
     });
     program
         .command('dmens:update-profile')
         .description('Update User profile')
-        .argument('<address>')
         .argument('<profile>')
-        .action(updateProfile);
-});
-const adminProfileCmd = (program) => __awaiter(void 0, void 0, void 0, function* () {
-    const updateProfile = (userAddress) => __awaiter(void 0, void 0, void 0, function* () {
-        const { dmensSdk, rawSigner } = readConfig(program);
-        console.log(`-------------post tweet-------------`);
-        const postTweetTxn = dmensSdk.Profile.buildUpdateAdminTransaction(userAddress);
-        const address = yield rawSigner.getAddress();
-        console.log(`address: 0x${address}`);
-        const executeResponse = yield rawSigner.executeMoveCallWithRequestType(postTweetTxn, 'WaitForEffectsCert');
-        const response = sui_js.getTransactionEffects(executeResponse);
-        console.log(`excute status: ${response === null || response === void 0 ? void 0 : response.status.status} digest: ${response === null || response === void 0 ? void 0 : response.transactionDigest} `);
-    });
-    program
-        .command('dmens:update-profile-admin')
-        .description('Update User profile')
-        .argument('<address>')
         .action(updateProfile);
 });
 
@@ -327,6 +296,5 @@ const program = initProgram();
 postTweetCmd(program);
 postTweetWithRrefCmd(program);
 updateprofileCmd(program);
-adminProfileCmd(program);
 program.parse();
 //# sourceMappingURL=index.js.map
