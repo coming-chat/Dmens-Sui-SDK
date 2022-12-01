@@ -3,11 +3,9 @@ import { IModule } from '../interfaces/IModule';
 import { SDK } from '../sdk';
 
 export type UserProfile = {
-  userName: string,
-  userWalletAddress:string,
-  userProfileUrl: string,
-  userBio: string,
-  userCid: string
+  name: string,
+  avator: string,
+  bio: string,
 };
 
 export class ProfileModule implements IModule {
