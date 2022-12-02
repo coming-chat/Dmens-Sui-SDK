@@ -141,6 +141,19 @@ class TweetModule {
         };
         return txn;
     }
+    buildFollowTransaction(params) {
+        const packageObjectId = this.sdk.networkOptions.packageObjectId;
+        const txn = {
+            packageObjectId: packageObjectId,
+            module: 'dmens',
+            function: 'follow',
+            arguments: [params.account, params.toFollow],
+            typeArguments: [],
+            gasPayment: params.gasPayment,
+            gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,
+        };
+        return txn;
+    }
 }
 
 class SDK {
@@ -272,6 +285,28 @@ const postTweetWithRrefCmd = (program) => __awaiter(void 0, void 0, void 0, func
         .argument('<ref>')
         .action(postTweetWithRref);
 });
+const followSomeoneCmd = (program) => __awaiter(void 0, void 0, void 0, function* () {
+    const followSomeone = (account, to_follow) => __awaiter(void 0, void 0, void 0, function* () {
+        const { dmensSdk, rawSigner } = readConfig(program);
+        const params = {
+            account: account,
+            toFollow: to_follow
+        };
+        console.log(`-------------post tweet with ref-------------`);
+        const followWithTxn = dmensSdk.Tweet.buildFollowTransaction(params);
+        const address = yield rawSigner.getAddress();
+        console.log(`address: 0x${address}`);
+        const executeResponse = yield rawSigner.executeMoveCallWithRequestType(followWithTxn, 'WaitForEffectsCert');
+        const response = sui_js.getTransactionEffects(executeResponse);
+        console.log(`excute status: ${response === null || response === void 0 ? void 0 : response.status.status} digest: ${response === null || response === void 0 ? void 0 : response.transactionDigest} `);
+    });
+    program
+        .command('dmens:follow')
+        .description('Publish Tweet')
+        .argument('<address>')
+        .argument('<to_follow>')
+        .action(followSomeone);
+});
 
 const updateprofileCmd = (program) => __awaiter(void 0, void 0, void 0, function* () {
     const updateProfile = (profile) => __awaiter(void 0, void 0, void 0, function* () {
@@ -296,5 +331,6 @@ const program = initProgram();
 postTweetCmd(program);
 postTweetWithRrefCmd(program);
 updateprofileCmd(program);
+followSomeoneCmd(program);
 program.parse();
 //# sourceMappingURL=index.js.map

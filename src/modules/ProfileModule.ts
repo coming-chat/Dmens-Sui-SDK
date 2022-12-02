@@ -4,7 +4,7 @@ import { SDK } from '../sdk';
 
 export type UserProfile = {
   name: string,
-  avator: string,
+  avatar: string,
   bio: string,
 };
 

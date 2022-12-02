@@ -16,11 +16,18 @@ export declare type PostTweetRefParams = {
     gasPayment?: string;
     gasBudget?: number;
 };
+export declare type FollowParams = {
+    account: string;
+    toFollow: boolean;
+    gasPayment?: string;
+    gasBudget?: number;
+};
 export declare class TweetModule implements IModule {
     protected _sdk: SDK;
     get sdk(): SDK;
     constructor(sdk: SDK);
     buildPostTweetTransaction(params: PostTweetParams): MoveCallTransaction;
     buildPostTweetWithRefTransaction(params: PostTweetRefParams): MoveCallTransaction;
+    buildFollowTransaction(params: FollowParams): MoveCallTransaction;
 }
 //# sourceMappingURL=TweetModule.d.ts.map
