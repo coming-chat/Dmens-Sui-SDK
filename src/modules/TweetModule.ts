@@ -19,6 +19,13 @@ export type PostTweetRefParams = {
   gasBudget?: number
 }
 
+export type FollowParams = {
+  account: string,
+  toFollow: boolean,
+  gasPayment?:string,
+  gasBudget?: number
+}
+
 export class TweetModule implements IModule {
     protected _sdk: SDK;
     
@@ -53,6 +60,20 @@ export class TweetModule implements IModule {
         module: 'dmens',
         function: 'post_with_ref',
         arguments: [params.appId,params.action,params.text,params.refIdentifier],
+        typeArguments: [],
+        gasPayment: params.gasPayment,
+        gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,
+      }
+      return txn;
+    }
+
+    buildFollowTransaction(params: FollowParams): MoveCallTransaction {
+      const packageObjectId = this.sdk.networkOptions.packageObjectId;
+      const txn:MoveCallTransaction = {
+        packageObjectId: packageObjectId,
+        module: 'dmens',
+        function: 'follow',
+        arguments: [params.account,params.toFollow],
         typeArguments: [],
         gasPayment: params.gasPayment,
         gasBudget: params.gasBudget ? params.gasBudget : DEFAULT_GAS_BUDGET_FOR_MOVE_EXECUTE,

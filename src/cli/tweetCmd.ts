@@ -70,3 +70,33 @@ export const postTweetWithRrefCmd = async (
         .argument('<ref>')
         .action(postTweetWithRref)
 }
+
+export const followSomeoneCmd = async (
+    program:Command
+) => {
+    
+    const followSomeone = async (
+        account: string,
+        to_follow: boolean,
+    ) => {
+       const { dmensSdk, rawSigner } = readConfig(program);
+       const params = {
+        account: account,
+        toFollow: to_follow
+       }
+       console.log(`-------------post tweet with ref-------------`)
+       const followWithTxn = dmensSdk.Tweet.buildFollowTransaction(params);
+       const address = await rawSigner.getAddress();
+       console.log(`address: 0x${address}`)
+       const executeResponse = await rawSigner.executeMoveCallWithRequestType(followWithTxn,'WaitForEffectsCert')
+       const response = getTransactionEffects(executeResponse)
+       console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
+    }
+    
+    program
+        .command('dmens:follow')
+        .description('Publish Tweet')
+        .argument('<address>')
+        .argument('<to_follow>')
+        .action(followSomeone)
+}
