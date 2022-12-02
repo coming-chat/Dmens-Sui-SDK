@@ -27,7 +27,7 @@ export class ProfileModule implements IModule {
         packageObjectId: packageObjectId,
         module: 'profile',
         function: 'update_profile',
-        arguments: [globalId, JSON.stringify(profile), "1111",""],
+        arguments: [globalId, JSON.stringify(profile), ""],
         typeArguments: [],
         gasBudget: 30000,
       }
