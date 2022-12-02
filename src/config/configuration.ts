@@ -27,8 +27,8 @@ export class NetworkConfiguration {
   export const DEVNET_CONFIG = new NetworkConfiguration(
     'devnet',
     Network.DEVNET,
-    '0x1c0a7b8073f8b2e654ff3d217fb276d0e95dda44',
-    '0x0d8a4050d7b27d08adb20be4ff6af1130b8ca95a',
+    '0xfbcbf52e77f60d1bf7bce21e4e3c5cb1dba3a902',
+    '0xfa75aebd9ea5d16d4dc17830864ed548e4d1bd16',
   );
 
   export const CONFIGS = {

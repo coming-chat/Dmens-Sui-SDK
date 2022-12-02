@@ -2,11 +2,9 @@ import { MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule';
 import { SDK } from '../sdk';
 export declare type UserProfile = {
-    userName: string;
-    userWalletAddress: string;
-    userProfileUrl: string;
-    userBio: string;
-    userCid: string;
+    name: string;
+    avator: string;
+    bio: string;
 };
 export declare class ProfileModule implements IModule {
     protected _sdk: SDK;
