@@ -1,4 +1,4 @@
-export class DMensConfiguration {
+export class NetworkConfiguration {
   constructor(
     public name: string,
     public fullNodeUrl: string,
@@ -10,7 +10,7 @@ export class DMensConfiguration {
   ) {}
 }
 
-export const MAINNET_CONFIG = new DMensConfiguration(
+export const MAINNET_CONFIG = new NetworkConfiguration(
   'mainnet',
   'https://fullnode.mainnet.sui.io:443',
   '',
@@ -19,7 +19,7 @@ export const MAINNET_CONFIG = new DMensConfiguration(
   ''
 );
 
-export const TESTNET_CONFIG = new DMensConfiguration(
+export const TESTNET_CONFIG = new NetworkConfiguration(
   'testnet',
   'https://fullnode.testnet.sui.io:443',
   'https://graphql.coming.chat/sui-testnet/graphql',
@@ -28,7 +28,7 @@ export const TESTNET_CONFIG = new DMensConfiguration(
   ''
 );
 
-export const DEVNET_CONFIG = new DMensConfiguration(
+export const DEVNET_CONFIG = new NetworkConfiguration(
   'devnet',
   'https://fullnode.devnet.sui.io:443',
   'https://graphql.coming.chat/sui-devnet/graphql',
