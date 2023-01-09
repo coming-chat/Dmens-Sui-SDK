@@ -3,7 +3,7 @@ import { IModule } from '../interfaces/IModule';
 import { SDK } from '../sdk';
 export declare type UserProfile = {
     name: string;
-    avator: string;
+    avatar: string;
     bio: string;
 };
 export declare class ProfileModule implements IModule {
